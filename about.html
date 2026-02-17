@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — RECALL Forensics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@400;500;700&family=Nunito+Sans:wght@400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --surface: #111;
+  --surface-2: #1a1a1a;
+  --border: #222;
+  --gold: #e8c547;
+  --gold-dim: rgba(232, 197, 71, 0.15);
+  --blue: #4a8abf;
+  --red: #c44;
+  --text: #e0e0e0;
+  --text-dim: #888;
+  --text-faint: #555;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito Sans', sans-serif;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10,10,10,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  padding: 16px 0;
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.nav-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--bg);
+  letter-spacing: -0.5px;
+}
+.nav-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+}
+.about-hero {
+  padding: 140px 32px 80px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.hero-photo-col {
+  position: relative;
+}
+.hero-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  filter: grayscale(15%);
+  transition: filter 0.4s;
+}
+.hero-photo:hover {
+  filter: grayscale(0%);
+}
+.photo-caption {
+  margin-top: 16px;
+  text-align: center;
+}
+.photo-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 1px;
+}
+.photo-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.hero-text-col {
+  padding-top: 8px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #f0f0f0;
+  margin-bottom: 28px;
+}
+.hero-headline em {
+  color: var(--gold);
+  font-style: normal;
+}
+.hero-body {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px;
+  line-height: 1.85;
+  color: #b0b0b0;
+}
+.hero-body p {
+  margin-bottom: 20px;
+}
+.hero-body strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.cred-strip {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.cred-card {
+  background: var(--surface);
+  padding: 32px 28px;
+  text-align: center;
+}
+.cred-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+.cred-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+.cred-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+}
+.cred-sub {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 6px;
+  font-family: 'Nunito Sans', sans-serif;
+}
+.why-section {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+.why-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+.why-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 20px;
+}
+.why-col p {
+  font-family: 'Source Serif 4', serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #999;
+  margin-bottom: 16px;
+}
+.why-col p strong {
+  color: var(--text);
+}
+.proof-section {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 0 32px;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.proof-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.proof-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.proof-card.gold::before { background: var(--gold); }
+.proof-card.blue::before { background: var(--blue); }
+.proof-card.red::before { background: var(--red); }
+.proof-stat {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.proof-card.gold .proof-stat { color: var(--gold); }
+.proof-card.blue .proof-stat { color: var(--blue); }
+.proof-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+.connect-section {
+  max-width: 1100px;
+  margin: 0 auto 100px;
+  padding: 0 32px;
+}
+.connect-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.connect-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+.connect-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.connect-icon {
+  font-size: 24px;
+}
+.connect-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.connect-url {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px;
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+}
+@media (max-width: 768px) {
+  .about-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-top: 100px;
+  }
+  .hero-photo-col {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  .hero-headline {
+    font-size: 32px;
+  }
+  .cred-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .why-content {
+    grid-template-columns: 1fr;
+    padding: 32px;
+  }
+  .proof-grid {
+    grid-template-columns: 1fr;
+  }
+  .connect-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .nav-links {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-mark">RC</div>
+      <span class="nav-name">RECALL</span>
+    </a>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Cases</a>
+      <a href="#" class="active">About</a>
+      <a href="#">Substack</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</nav>
+<section class="about-hero">
+  <div class="hero-photo-col">
+    <img src="images/robert-benard.jpg" alt="Robert Benard, MS, RN, CNS" class="hero-photo">
+    <div class="photo-caption">
+      <div class="photo-name">ROBERT BENARD, MS, RN, CNS</div>
+      <div class="photo-title">AGACNP-BC &bull; PMHNP-BC &bull; Forensic Researcher</div>
+    </div>
+  </div>
+  <div class="hero-text-col">
+    <div class="section-label">About the Researcher</div>
+    <h1 class="hero-headline">I built a system to find<br>the matches <em>the system<br>keeps missing.</em></h1>
+    <div class="hero-body">
+      <p>I'm a board-certified Acute Care and Psychiatric Nurse Practitioner with clinical experience in <strong>trauma/ICU, psychiatry, and addiction medicine</strong>. In the ICU, I took care of patients who couldn't tell us who they were. People who had overdosed and sustained severe anoxic brain injuries, gunshot and assault victims brought in without ID, people who stayed John and Jane Does on our unit for weeks, sometimes months. Some of them never got identified.</p>
+      <p>In addiction medicine, we meet people where they are. In trauma, we stabilize people who arrive as the result of violence they didn't ask for. Many of the patients I've treated across both settings are navigating unstable housing, fractured relationships, or dangerous circumstances. When someone in that situation disappears or dies — whether from an overdose, an assault, or something nobody ever reports — the gap between who they were and what ends up in a database can be enormous.</p>
+      <p>There are over 13,000 unidentified remains and 600,000 active missing persons cases in the United States. These records sit in <strong>fragmented databases managed by different agencies</strong> that rarely talk to each other. Matches that seem obvious in hindsight get missed because no one ever compared them.</p>
+      <p>RECALL is a cross-database forensic matching system I built to change that. It runs algorithmic comparisons across NamUs, the Charley Project, Doe Network, and Wikipedia missing persons records, surfacing potential matches that human reviewers can validate and submit to medical examiner offices for DNA verification.</p>
+      <p>This isn't theoretical. <strong>Leads have already been submitted to and accepted by ME offices</strong>, and DNA testing through CODIS has been conducted on cases surfaced by this system.</p>
+    </div>
+  </div>
+</section>
+<section class="cred-strip">
+  <div class="section-label">Credentials</div>
+  <div class="cred-grid">
+    <div class="cred-card">
+      <div class="cred-icon">🩺</div>
+      <div class="cred-label">Critical Care</div>
+      <div class="cred-value">AGACNP-BC</div>
+      <div class="cred-sub">Adult-Gerontology Acute Care NP<br>Trauma/ICU, Addiction Medicine</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🧠</div>
+      <div class="cred-label">Psychiatry</div>
+      <div class="cred-value">PMHNP-BC</div>
+      <div class="cred-sub">Psychiatric Mental Health NP<br>Board Certified</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🎓</div>
+      <div class="cred-label">Education</div>
+      <div class="cred-value">UC San Francisco</div>
+      <div class="cred-sub">MS, Nursing &bull; Minor in Genomics</div>
+    </div>
+    <div class="cred-card">
+      <div class="cred-icon">🔬</div>
+      <div class="cred-label">Research</div>
+      <div class="cred-value">RECALL System</div>
+      <div class="cred-sub">10M+ forensic comparisons processed</div>
+    </div>
+  </div>
+</section>
+<section class="why-section">
+  <div class="section-label">Why a Clinician is Doing This</div>
+  <div class="why-content">
+    <div class="why-col">
+      <h3>The Clinical Connection</h3>
+      <p>In the trauma bay, patients arrive as the result of <strong>gunshot wounds, stabbings, assaults, hit-and-runs</strong> — often without identification. In psychiatry, you encounter people in psychosis, dissociative states, or cognitive decline who genuinely don't know their own name. Some of them end up as John or Jane Does in a medical examiner's system.</p>
+      <p>In addiction medicine, we meet people where they are. Many are navigating unstable housing, fractured relationships, and systems that weren't designed to keep track of them. <strong>Whether someone becomes unidentified because of violence, substance use, mental illness, or simply falling through the cracks — they all deserve to be found.</strong></p>
+    </div>
+    <div class="why-col">
+      <h3>The System Gap</h3>
+      <p>NamUs has the data. The Charley Project has the data. Doe Network has the data. But <strong>nobody is systematically comparing them</strong>. Each database operates in its own silo.</p>
+      <p>RECALL doesn't replace DNA testing or forensic investigation. It's a <strong>triage layer</strong> that surfaces the most promising matches so investigators can focus their limited resources on cases most likely to result in identification.</p>
+    </div>
+  </div>
+</section>
+<section class="proof-section">
+  <div class="section-label">Results</div>
+  <div class="proof-grid">
+    <div class="proof-card gold">
+      <div class="proof-stat">10M+</div>
+      <div class="proof-desc">Forensic comparisons processed across multiple state databases and national missing persons records</div>
+    </div>
+    <div class="proof-card blue">
+      <div class="proof-stat">Active</div>
+      <div class="proof-desc">Leads submitted to and accepted by medical examiner offices including Cook County, IL and San Mateo County, CA</div>
+    </div>
+    <div class="proof-card red">
+      <div class="proof-stat">CODIS</div>
+      <div class="proof-desc">DNA testing conducted through the national CODIS database on leads surfaced by the RECALL matching system</div>
+    </div>
+  </div>
+</section>
+<section class="why-section">
+  <div class="section-label">Education &amp; Training</div>
+  <div class="why-content">
+    <div class="why-col">
+      <h3>Graduate</h3>
+      <p><strong>University of California, San Francisco</strong><br>
+      Master of Science, Nursing<br>
+      Minor in Genomics</p>
+      <p><strong>AGACNP-BC</strong> — Adult-Gerontology Acute Care Nurse Practitioner, Board Certified</p>
+      <p><strong>PMHNP-BC</strong> — Psychiatric Mental Health Nurse Practitioner, Board Certified</p>
+    </div>
+    <div class="why-col">
+      <h3>Undergraduate</h3>
+      <p><strong>Indiana University</strong><br>
+      Bachelor of Science, Nursing</p>
+      <p style="margin-top: 24px;"><strong>Continuing Education</strong></p>
+      <p><strong>Harvard Data Science Initiative</strong><br>
+      Agentic AI Intensive, December 2025</p>
+    </div>
+  </div>
+</section>
+<section class="connect-section">
+  <div class="section-label">Connect</div>
+  <div class="connect-grid">
+    <a href="https://recallforensics.substack.com" class="connect-card" target="_blank">
+      <div class="connect-icon">✍️</div>
+      <div class="connect-label">Substack</div>
+      <div class="connect-url">recallforensics.substack.com</div>
+    </a>
+    <a href="https://recallproject.org" class="connect-card" target="_blank">
+      <div class="connect-icon">🌐</div>
+      <div class="connect-label">Website</div>
+      <div class="connect-url">recallproject.org</div>
+    </a>
+    <a href="https://www.linkedin.com/in/robertbenard/" class="connect-card" target="_blank">
+      <div class="connect-icon">💼</div>
+      <div class="connect-label">LinkedIn</div>
+      <div class="connect-url">Robert Benard, NP</div>
+    </a>
+    <a href="mailto:recallforensics@gmail.com" class="connect-card">
+      <div class="connect-icon">📧</div>
+      <div class="connect-label">Contact</div>
+      <div class="connect-url">recallforensics@gmail.com</div>
+    </a>
+  </div>
+</section>
+<footer class="footer">
+  RECALL FORENSICS &bull; INDEPENDENT FORENSIC RESEARCH &bull; 2025
+</footer>
+</body>
+</html>
