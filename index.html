@@ -397,30 +397,35 @@ const fragments = [
 function initRain() {
   rain.width = window.innerWidth;
   rain.height = window.innerHeight;
-  cols = Math.floor(rain.width / 44);
+  cols = Math.floor(rain.width / 56);
   drops = Array(cols).fill(0).map(() => Math.random() * -100);
 }
 
 function drawRain() {
   rc.fillStyle = 'rgba(7,8,10,.06)';
   rc.fillRect(0, 0, rain.width, rain.height);
-  rc.font = '10px JetBrains Mono, monospace';
+  rc.font = '14px JetBrains Mono, monospace';
 
   for (let i = 0; i < cols; i++) {
     const frag = fragments[Math.floor(Math.random() * fragments.length)];
     const x = i * (rain.width / cols);
-    const y = drops[i] * 14;
+    const y = drops[i] * 18;
 
     if (frag === 'MATCH' || frag === '0.94' || frag === 'REFER') {
-      rc.fillStyle = 'rgba(212,168,66,.12)';
+      rc.fillStyle = 'rgba(212,168,66,.15)';
+      rc.shadowBlur = 3;
+      rc.shadowColor = 'rgba(212,168,66,0.15)';
     } else {
-      rc.fillStyle = 'rgba(212,168,66,.04)';
+      rc.fillStyle = 'rgba(212,168,66,.06)';
+      rc.shadowBlur = 3;
+      rc.shadowColor = 'rgba(138,141,150,0.1)';
     }
 
     rc.fillText(frag, x, y);
+    rc.shadowBlur = 0;
 
     if (y > rain.height && Math.random() > 0.98) drops[i] = 0;
-    drops[i] += 0.4 + Math.random() * 0.3;
+    drops[i] += 0.3 + Math.random() * 0.2;
   }
   requestAnimationFrame(drawRain);
 }
