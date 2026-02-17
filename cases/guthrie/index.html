@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Nancy Guthrie Disappearance — OSINT Case Study | RECALL</title>
+<meta name="description" content="Structured open-source intelligence analysis of the Nancy Guthrie kidnapping. 60+ sources, 6 platforms, 12,000+ data points. What disciplined methodology produces that crowdsourcing can't.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=JetBrains+Mono:wght@400;500;600&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4a842;--gold-dim:rgba(212,168,66,.08);--bg:#07080a;--surface:#0c0d10;--surface2:#121316;--border:#1a1c20;--border-light:#262830;--text:#8a8d96;--text-dim:#4a4d55;--text-bright:#d8dae0;--white:#f0f1f4;--red:#e84747;--green:#47e882}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Nunito Sans',sans-serif;line-height:1.7;overflow-x:hidden}
+::selection{background:rgba(212,168,66,.3);color:var(--white)}
+
+.grain{position:fixed;inset:0;z-index:10000;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:56px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,8,10,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:4px;color:var(--gold);text-decoration:none;text-transform:uppercase}
+.nav-logo::after{content:'_';animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);text-decoration:none;transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-sub{padding:6px 16px;border:1px solid rgba(212,168,66,.3);color:var(--gold)!important;border-radius:3px;transition:all .3s}
+.nav-sub:hover{background:var(--gold);color:var(--bg)!important}
+@media(max-width:700px){.nav{padding:0 20px}.nav-links a:not(.nav-sub){display:none}}
+
+/* STATUS BAR */
+.status-bar{background:rgba(232,71,71,.06);border-bottom:1px solid rgba(232,71,71,.15);padding:10px 24px;margin-top:56px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:13px}
+.status-badge{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+.status-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(232,71,71,.4)}50%{opacity:.4;box-shadow:0 0 0 6px rgba(232,71,71,0)}}
+.status-text{color:var(--text)}
+.status-text strong{color:var(--text-bright)}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<!-- NAV -->
+<nav class="nav">
+<a href="/" class="nav-logo">RECALL</a>
+<div class="nav-links">
+<a href="/">Home</a>
+<a href="/cases/damato">Cases</a>
+<a href="mailto:recallforensics@gmail.com">Contact</a>
+<a href="#" class="nav-sub">Subscribe</a>
+</div>
+</nav>
+
+<!-- STATUS -->
+<div class="status-bar">
+<span class="status-badge">Active Case</span>
+<span class="status-text"><strong>Day 17</strong> — Nancy Guthrie remains missing. Updated February 17, 2026.</span>
+</div>
+
+<!-- HERO -->
+<header style="position:relative;padding:80px 24px 60px;border-bottom:1px solid var(--border)">
+<div style="max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr 240px;gap:40px;align-items:start">
+<div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px">OSINT Case Study</div>
+<h1 style="font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:900;color:var(--white);line-height:1.1;margin-bottom:20px">Nancy Guthrie <em style="color:var(--gold);font-style:italic">Disappearance</em></h1>
+<p style="font-size:17px;color:var(--text);max-width:560px;line-height:1.8;margin-bottom:24px">Structured open-source intelligence analysis of one of the most high-profile missing persons cases in recent history. What disciplined methodology produces that crowdsourcing can't.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 14px;background:rgba(212,168,66,.06);border:1px solid rgba(212,168,66,.12);border-radius:3px;color:var(--text-dim)">Catalina Foothills, AZ</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 14px;background:rgba(212,168,66,.06);border:1px solid rgba(212,168,66,.12);border-radius:3px;color:var(--text-dim)">Missing Feb 1, 2026</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 14px;background:rgba(212,168,66,.06);border:1px solid rgba(212,168,66,.12);border-radius:3px;color:var(--text-dim)">12 hrs analysis</span>
+</div>
+</div>
+<div style="border-radius:6px;overflow:hidden;border:1px solid var(--border)">
+<div style="width:100%;aspect-ratio:3/4;background:var(--surface);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-dim);text-align:center;padding:20px;line-height:1.6">Nancy Guthrie, 84<br><br>Replace with<br>NBC/TODAY photo</div>
+</div>
+</div>
+</header>
+
+<!-- TIP LINE -->
+<div style="max-width:800px;margin:0 auto;padding:24px">
+<div style="background:rgba(232,71,71,.06);border:1px solid rgba(232,71,71,.15);border-radius:6px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<span style="font-size:15px;color:var(--text-bright);font-weight:600">If you have information <span style="color:var(--text);font-weight:400">about this case</span></span>
+<a href="tel:18002255324" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:10px 20px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:.5px">1-800-CALL-FBI</a>
+</div>
+</div>
+
+<!-- NUMBERS -->
+<div style="max-width:800px;margin:0 auto;padding:20px 24px 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold)">60+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-top:4px">Sources verified</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold)">6</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-top:4px">Platforms monitored</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold)">12K+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-top:4px">Data points collected</div>
+</div>
+<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px;text-align:center">
+<div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold)">44</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--text-dim);margin-top:4px">Video frames analyzed</div>
+</div>
+</div>
+
+<div style="max-width:800px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)"></div>
+
+<!-- MAIN CONTENT -->
+<div style="max-width:800px;margin:0 auto;padding:80px 24px">
+
+<!-- OVERVIEW -->
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="display:inline-block;width:24px;height:1px;background:rgba(212,168,66,.4)"></span>Overview</div>
+<h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--white);margin-bottom:20px;line-height:1.15">What RECALL Did</h2>
+<div class="prose" style="font-size:16px;color:var(--text);line-height:1.85">
+<p style="margin-bottom:18px">On February 1, 2026, Nancy Guthrie, 84, was taken from her home in the Catalina Foothills outside Tucson, Arizona. Her daughter is NBC TODAY anchor Savannah Guthrie. Within days, the case generated one of the largest crowdsourced investigations in recent memory: 85,000 Facebook group members, nine active Reddit threads, 100+ pages on Websleuths, and tens of thousands of tips flooding the FBI hotline.</p>
+<p style="margin-bottom:18px">RECALL applied structured open-source intelligence methods to the publicly available evidence. Not to compete with law enforcement, but to demonstrate what disciplined analysis produces when compared to the noise of unstructured crowdsourcing.</p>
+<p style="margin-bottom:18px">Several of our early assessments held up as the investigation progressed. Several popular theories we flagged as low-confidence collapsed within days.</p>
+</div>
+
+<!-- FBI IMAGE -->
+<div style="margin:40px 0;border-radius:6px;overflow:hidden;border:1px solid var(--border)">
+<img src="images/01_fbi_suspect_doorbell.jpg" alt="FBI surveillance still of masked suspect at Nancy Guthrie front door" style="width:100%;display:block;filter:grayscale(.2) contrast(1.05)">
+<div style="padding:10px 16px;font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);line-height:1.5"><strong style="color:var(--text-bright)">FBI surveillance still.</strong> Masked suspect at Nancy Guthrie's front door, 1:47 AM, February 1, 2026. Source: FBI Phoenix Field Office</div>
+</div>
+
+<div style="max-width:800px;margin:40px auto 0;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)"></div>
+
+<!-- METHODOLOGY -->
+<div style="margin-top:80px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="display:inline-block;width:24px;height:1px;background:rgba(212,168,66,.4)"></span>How We Work</div>
+<h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--white);margin-bottom:20px;line-height:1.15">Methodology</h2>
+<p style="font-size:16px;color:var(--text);line-height:1.85;margin-bottom:32px">Over two analysis sessions totaling approximately 12 hours, RECALL systematically collected, verified, and cross-referenced open-source intelligence from six platforms. Every claim was rated on a 5-point credibility scale. Every finding is traceable to its source.</p>
+
+<!-- Method Steps -->
+<div style="display:grid;gap:12px">
+
+<details style="background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden" open>
+<summary style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--text-bright);list-style:none">
+<span style="width:28px;height:28px;background:var(--gold-dim);color:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;flex-shrink:0">01</span>
+Multi-Platform Collection
+</summary>
+<div style="padding:0 20px 20px 62px;font-size:14px;line-height:1.75;color:var(--text)">
+<p style="margin-bottom:12px">RECALL monitored six platforms simultaneously: Reddit (9 subreddits), Facebook (85K-member group), Websleuths (100+ pages), X/Twitter, Instagram, and news media from 30+ outlets.</p>
+<p style="margin-bottom:12px">Every piece of information was tagged with its origin, timestamp, and an initial reliability assessment. Priority went to <strong style="color:var(--text-bright)">primary sources</strong>: law enforcement press conferences, FBI releases, court filings. Social media theories were treated as hypotheses requiring independent verification, never as evidence.</p>
+<p>Custom data collection scripts processed social media at scale, extracting claims, timestamps, and engagement metrics to identify which theories were gaining traction and whether traction correlated with accuracy. (It usually didn't.)</p>
+</div>
+</details>
+
+<details style="background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+<summary style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--text-bright);list-style:none">
+<span style="width:28px;height:28px;background:var(--gold-dim);color:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;flex-shrink:0">02</span>
+Clinical Evidence Analysis
+</summary>
+<div style="padding:0 20px 20px 62px;font-size:14px;line-height:1.75;color:var(--text)">
+<p style="margin-bottom:12px">RECALL's lead analyst is a nurse practitioner with clinical experience in emergency and acute care. This background provides analytical depth that pure internet research cannot replicate.</p>
+<p style="margin-bottom:12px"><strong style="color:var(--text-bright)">Blood evidence:</strong> The blood at the scene was assessed as consistent with a moderate, survivable injury. Likely a head wound, which bleeds dramatically relative to severity. Not a volume consistent with a fatal bleed. The FBI's continued classification as a kidnapping aligns with this assessment.</p>
+<p style="margin-bottom:12px"><strong style="color:var(--text-bright)">Pacemaker telemetry:</strong> Nancy's pacemaker monitoring app lost connection at 2:28 AM. Public speculation treated this as a possible time of death. RECALL's clinical analysis identified a simpler explanation: the device lost its Bluetooth connection to the phone at the home. Nancy was moved beyond range. The pacemaker could still be functioning, and the FBI is now deploying drone-mounted scanners to search for its signal.</p>
+<p><strong style="color:var(--text-bright)">Medication dependency:</strong> Nancy's daily medications were left at the home, establishing a clinical timeline that narrows the window for safe recovery with each passing day.</p>
+</div>
+</details>
+
+<details style="background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+<summary style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--text-bright);list-style:none">
+<span style="width:28px;height:28px;background:var(--gold-dim);color:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;flex-shrink:0">03</span>
+Hypothesis Testing &amp; Confidence Rating
+</summary>
+<div style="padding:0 20px 20px 62px;font-size:14px;line-height:1.75;color:var(--text)">
+<p style="margin-bottom:12px">Every major theory circulating online was logged, sourced, and evaluated on a 5-point credibility scale. Each was tracked as the investigation developed.</p>
+<p>The key difference between structured analysis and crowdsourcing isn't access to information. It's <strong style="color:var(--text-bright)">calibrated confidence</strong>. When 50,000 people look at the same evidence, consensus forms fast and feels like proof. It isn't. RECALL rates every assessment and revises when new information arrives.</p>
+</div>
+</details>
+
+<details style="background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+<summary style="padding:16px 20px;cursor:pointer;display:flex;align-items:center;gap:14px;font-size:15px;font-weight:600;color:var(--text-bright);list-style:none">
+<span style="width:28px;height:28px;background:var(--gold-dim);color:var(--gold);border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;flex-shrink:0">04</span>
+Structured Documentation
+</summary>
+<div style="padding:0 20px 20px 62px;font-size:14px;line-height:1.75;color:var(--text)">
+<p style="margin-bottom:12px">Every finding, every source, every assessment is archived with timestamps and confidence levels. RECALL maintains an intelligence workspace for each case with cross-referenced timelines, source catalogs, and decision logs.</p>
+<p>This isn't for show. It's for <strong style="color:var(--text-bright)">reproducibility</strong>. If a finding matters, someone else should be able to trace exactly how we got there.</p>
+</div>
+</details>
+
+</div><!-- end method steps grid -->
+</div><!-- end methodology -->
+
+<!-- BACKPACK IMAGE -->
+<div style="margin:48px 0;border-radius:6px;overflow:hidden;border:1px solid var(--border)">
+<img src="images/02_ozark_trail_backpack.jpg" alt="Ozark Trail Hiker Pack 25L identified by FBI" style="width:100%;display:block">
+<div style="padding:10px 16px;font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);line-height:1.5"><strong style="color:var(--text-bright)">The crowd got the brand wrong.</strong> Community members confidently identified the suspect's backpack as a PROVIZ (specialty cycling brand, ~$90). The FBI corrected on Feb 12: it's an Ozark Trail Hiker Pack 25L, sold at Walmart for ~$25.</div>
+</div>
+
+<div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:60px 0"></div>
+
+<!-- SCORECARD -->
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="display:inline-block;width:24px;height:1px;background:rgba(212,168,66,.4)"></span>Results</div>
+<h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--white);margin-bottom:20px;line-height:1.15">What Held Up, What <em style="color:var(--gold);font-style:italic">Collapsed</em></h2>
+<p style="font-size:16px;color:var(--text);line-height:1.85;margin-bottom:32px">Structured analysis isn't about being right every time. It's about knowing what you're confident in and what you're not, before the answer arrives.</p>
+
+<!-- HELD UP -->
+<div style="margin-bottom:24px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:12px 16px;background:rgba(71,232,130,.06);color:var(--green);border-radius:6px 6px 0 0;border:1px solid rgba(71,232,130,.12);border-bottom:none">&#10003; Assessments That Held Up</div>
+<div style="border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;overflow:hidden">
+<div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(71,232,130,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10003;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">No forced entry theory</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">Evidence pattern points to someone with access or someone Nancy opened the door for. Still consistent with investigation.</div></div>
+</div>
+<div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(71,232,130,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10003;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">Amateur-with-research profile</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">Cheap equipment, improvised techniques, 40+ seconds of camera exposure. First-time offender who studied but lacks operational experience.</div></div>
+</div>
+<div style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(71,232,130,.1);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10003;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">Survivable injury assessment</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">Blood volume consistent with moderate wound, not fatal bleed. FBI continues to classify as kidnapping. Sheriff states belief Nancy is alive.</div></div>
+</div>
+</div>
+</div>
+
+<!-- COLLAPSED -->
+<div style="margin-bottom:40px">
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:12px 16px;background:rgba(232,71,71,.06);color:var(--red);border-radius:6px 6px 0 0;border:1px solid rgba(232,71,71,.12);border-bottom:none">&#10007; Theories That Collapsed</div>
+<div style="border:1px solid var(--border);border-top:none;border-radius:0 0 6px 6px;overflow:hidden">
+<div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(232,71,71,.1);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10007;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">PROVIZ backpack identification</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">Community confidently ID'd as PROVIZ ($90 cycling brand). Actually an Ozark Trail from Walmart ($25). Entire demographic profile was wrong.</div></div>
+</div>
+<div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(232,71,71,.1);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10007;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">Brother-in-law involvement</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">Viral suspect theory (395 comments, TV coverage). Entire Guthrie family officially cleared Feb 16. Phones, computers, vehicles processed.</div></div>
+</div>
+<div style="padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+<span style="flex-shrink:0;width:20px;height:20px;border-radius:50%;background:rgba(232,71,71,.1);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:11px;margin-top:2px">&#10007;</span>
+<div><div style="color:var(--text-bright);font-weight:600;font-size:14px">Ransom note authenticity</div><div style="color:var(--text-dim);font-size:13px;margin-top:2px">$6M Bitcoin demand appeared legitimate. Derrick Callella arrested for fraud. Prior: $430K unemployment theft. No connection to kidnapping.</div></div>
+</div>
+</div>
+</div>
+
+<div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:60px 0"></div>
+
+<!-- DNA CALLOUT -->
+<div style="background:linear-gradient(135deg,rgba(71,150,232,.06),rgba(160,96,224,.06));border:1px solid rgba(71,150,232,.15);border-radius:6px;padding:24px;margin-bottom:60px">
+<h3 style="font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:10px">The DNA Trail</h3>
+<p style="font-size:14px;line-height:1.75">Unknown male DNA was recovered from a glove matching the suspect's, found 2 miles from Nancy's home. No match across 22 million CODIS profiles. The sample has been sent to DNA Labs International for SNP profiling, enabling investigative genetic genealogy. This is the same technology that identified the Golden State Killer after 40 years.</p>
+</div>
+
+<!-- TIMELINE -->
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="display:inline-block;width:24px;height:1px;background:rgba(212,168,66,.4)"></span>Key Dates</div>
+<h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--white);margin-bottom:28px;line-height:1.15">Investigation Timeline</h2>
+
+<div style="position:relative;padding-left:28px;margin-bottom:60px">
+<div style="position:absolute;left:6px;top:0;bottom:0;width:1px;background:var(--border)"></div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Jan 31, 9:48 PM</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7">Nancy dropped off at home by brother-in-law Tommaso Cioni. Garage door closes.</div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 1, 1:47 AM</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7"><strong style="color:var(--text-bright)">Doorbell camera disabled</strong> by masked figure. FBI surveillance footage begins here.</div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 1, 2:28 AM</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7"><strong style="color:var(--text-bright)">Pacemaker app loses connection.</strong> Nancy moved beyond Bluetooth range of monitoring phone.</div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 1, ~12:00 PM</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7">Nancy doesn't show for church. Family searches home, calls 911.</div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 10</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7">FBI releases doorbell camera footage. <strong style="color:var(--text-bright)">RECALL begins structured analysis.</strong></div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 12</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7">FBI identifies backpack as Ozark Trail 25L. Gloves recovered ~2mi from home. <strong style="color:var(--text-bright)">Unknown male DNA extracted.</strong></div>
+</div>
+
+<div style="position:relative;margin-bottom:28px">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;border:2px solid var(--gold);background:var(--bg)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 13–14</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7">SWAT raid on property ~2mi away. Up to 4 detained, Range Rover seized. All released, no arrests.</div>
+</div>
+
+<div style="position:relative">
+<div style="position:absolute;left:-24px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--gold)"></div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.5px;margin-bottom:4px">Feb 16</div>
+<div style="font-size:14px;color:var(--text);line-height:1.7"><strong style="color:var(--text-bright)">Entire Guthrie family officially cleared.</strong> DNA sent to private lab for genetic genealogy profiling.</div>
+</div>
+</div>
+
+<div style="height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:60px 0"></div>
+
+<!-- WHY THIS MATTERS -->
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px"><span style="display:inline-block;width:24px;height:1px;background:rgba(212,168,66,.4)"></span>Why This Matters</div>
+<h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,34px);font-weight:700;color:var(--white);margin-bottom:20px;line-height:1.15">What Structured OSINT <em style="color:var(--gold);font-style:italic">Demonstrates</em></h2>
+<div style="font-size:16px;color:var(--text);line-height:1.85">
+<p style="margin-bottom:18px">This case study isn't about RECALL solving the Guthrie disappearance. That's the FBI's job, and they have resources we don't.</p>
+<p style="margin-bottom:18px">This is about demonstrating what structured methodology does that crowdsourcing can't: <strong style="color:var(--text-bright)">calibrated confidence</strong> that separates signal from noise, <strong style="color:var(--text-bright)">clinical expertise</strong> applied to physical evidence, <strong style="color:var(--text-bright)">source discipline</strong> that weights a sheriff's press conference differently from a Reddit thread, and <strong style="color:var(--text-bright)">transparency</strong> that makes every conclusion traceable.</p>
+<p>Three confident crowd theories collapsed within days. Structured analysis flagged uncertainty on all three before they fell apart. That's the difference.</p>
+</div>
+
+</div><!-- end main content wrap -->
+
+<div style="max-width:800px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)"></div>
+
+<!-- TIP REPEAT -->
+<div style="max-width:800px;margin:0 auto;padding:40px 24px">
+<div style="background:rgba(232,71,71,.06);border:1px solid rgba(232,71,71,.15);border-radius:6px;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+<span style="font-size:15px;color:var(--text-bright);font-weight:600">If you have information</span>
+<a href="tel:18002255324" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;padding:10px 20px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:.5px">1-800-CALL-FBI</a>
+</div>
+</div>
+
+<!-- FOOTER CTA -->
+<div style="max-width:800px;margin:0 auto;padding:0 24px 60px">
+<div style="background:var(--surface);border:1px solid var(--border-light);border-radius:10px;padding:40px 32px;text-align:center">
+<h2 style="font-family:'Playfair Display',serif;font-size:24px;color:var(--white);margin-bottom:12px">Read the Full Analysis</h2>
+<p style="font-size:15px;color:var(--text);line-height:1.7;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto">The complete article covers the 41-minute window, DNA trail, pacemaker signal technology, and what 50,000 tips can and can't accomplish.</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+<a href="#" style="padding:14px 34px;background:var(--gold);color:var(--bg);border-radius:3px;font-family:'JetBrains Mono',monospace;font-weight:600;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none">Read on Substack →</a>
+<a href="mailto:recallforensics@gmail.com" style="padding:14px 34px;background:transparent;color:var(--text);border:1px solid var(--border-light);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none">Contact RECALL</a>
+</div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--border);padding:24px;text-align:center;font-size:12px;color:var(--text-dim);position:relative;z-index:1">
+<p>RECALL — Independent forensic research by Robert Benard, MS, RN, CNS</p>
+<p style="margin-top:6px"><a href="/" style="color:var(--gold);text-decoration:none">recallproject.org</a> · <a href="mailto:recallforensics@gmail.com" style="color:var(--gold);text-decoration:none">recallforensics@gmail.com</a></p>
+</footer>
+
+</body>
+</html>
